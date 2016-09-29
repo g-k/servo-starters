@@ -30,9 +30,6 @@ var extractFunction = function (callback) {
   };
 };
 
-var extractLabel = function (label, regex) {
-  return label.match(regex)[1];
-};
 
 var issuesUrl = "https://api.github.com/search/issues";
 
@@ -86,6 +83,10 @@ var replacers = [
   {matcher: /^B-(.*)/, replacement: ""},
   {matcher: /^I-(.*)/, replacement: "Category: "}
 ];
+
+var extractLabel = function (label, regex) {
+  return label.match(regex)[1];
+};
 
 var makeLabelFriendly = function (label) {
   var newLabel = label;
