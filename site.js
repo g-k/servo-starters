@@ -13,31 +13,6 @@ var repoDefaults = [
     { repo: "saltfs", language: "L-saltstack" },
 ];
 
-var langLabels = [{
-        name: "L-rust",
-        color: "bfd4f2",
-        url:  "https://api.github.com/servo/servo/labels/L-rust",
-        selected: true
-    },
-    {
-        name: "L-python",
-        color: "bfd4f2",
-        url:  "https://api.github.com/servo/servo/labels/L-python",
-        selected: true
-    },
-    {
-        name: "L-javascript",
-        color: "bfd4f2",
-        url:  "https://api.github.com/servo/servo/labels/L-javascript",
-        selected: true
-    },
-    {
-        name: "L-saltstack",
-        color: "bfd4f2",
-        url:  "https://api.github.com/servo/servo/labels/L-saltstack",
-        selected: true
-    },
-];
 
 var getIssueLanguageLabel = function (issue) {
     for (var i = 0; i < issue.labels.length; i++) {
