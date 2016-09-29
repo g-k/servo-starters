@@ -35,49 +35,56 @@ var extractIssuesFunction = function (numIssueRequests, callback) {
   };
 };
 
+// https://developer.github.com/v3/search/#search-issues
+var searchIssuesUrl = "https://api.github.com/search/issues";
 
-var issuesUrl = "https://api.github.com/search/issues";
-
-var getPotentiallyOpenIssues = function (callback) {
-
-    var today = new Date(),
-        twoWeeksAgo = new Date(today - 86400000 * 14),
-        olderThanTwoWeeks = "<" + twoWeeksAgo.toISOString().slice(0, 10);
-
-    var easy = $.ajax({
-        dataType: "json",
-        url: issuesUrl,
-        data: "q=updated:" + olderThanTwoWeeks + "+state:open+label:C-assigned+label:E-Easy+-label:\"C-has%20open%20PR\"+user:servo&sort=updated"
+var getPotentiallyOpenIssues = function (starterLabels, callback) {
+  var today = new Date();
+  var twoWeeksAgo = new Date(today - 86400000 * 14);
+  var olderThanTwoWeeks = "<" + twoWeeksAgo.toISOString().slice(0, 10);
+  var query = "type:issue+no:assignee+state:open+updated:" + olderThanTwoWeeks;
+  var issueXhrs = starterLabels.map(function (starterLabel, index) {
+    query += "+label:\""+ starterLabel.label + "\"";
+    if (starterLabel.repo) {
+      query += "+repo:" + starterLabel.repo;
+    } else if (starterLabel.user) {
+      query += "+user:" + starterLabel.user;
+    } else {
+      console.error("No repo or user found for", index, "label: ", starterLabel);
+    }
+    return $.ajax({
+      dataType: "json",
+      url: searchIssuesUrl,
+      data: "q=" + query + "&sort=updated"
     });
+  });
 
-    var lessEasy = $.ajax({
-        dataType: "json",
-        url: issuesUrl,
-        data: "q=updated:" + olderThanTwoWeeks + "+state:open+label:C-assigned+label:\"E-Less%20easy\"+-label:\"C-has%20open%20PR\"+user:servo&sort=updated"
-    });
+  var dataExtractor = extractIssuesFunction(starterLabels.length, callback);
 
-    var dataExtractor = extractFunction(callback);
-
-    $.when(easy, lessEasy).done(dataExtractor);
+  $.when.apply($, issueXhrs).done(dataExtractor);
 };
 
-var getOpenIssues = function (callback) {
-
-    var easy = $.ajax({
-        dataType: "json",
-        url: issuesUrl,
-        data: "q=state:open+-label:C-assigned+label:E-Easy+user:servo&sort=created"
+var getOpenIssues = function (starterLabels, callback) {
+  var query = "type:issue+state:open+no:assignee";
+  var issueXhrs = starterLabels.map(function (starterLabel, index) {
+    query += "+label:\""+ starterLabel.label + "\"";
+    if (starterLabel.repo) {
+      query += "+repo:" + starterLabel.repo;
+    } else if (starterLabel.user) {
+      query += "+user:" + starterLabel.user;
+    } else {
+      console.error("No repo or user found for", index, "label: ", starterLabel);
+    }
+    return $.ajax({
+      dataType: "json",
+      url: searchIssuesUrl,
+      data: "q=" + query + "&sort=created"
     });
+  });
 
-    var lessEasy = $.ajax({
-        dataType: "json",
-        url: issuesUrl,
-        data: "q=state:open+-label:C-assigned+label:\"E-Less%20easy\"+user:servo&sort=created"
-    });
+  var dataExtractor = extractIssuesFunction(starterLabels.length, callback);
 
-    var dataExtractor = extractFunction(callback);
-
-    $.when(easy, lessEasy).done(dataExtractor);
+  $.when.apply($, issueXhrs).done(dataExtractor);
 };
 
 var replacers = [
@@ -309,14 +316,14 @@ var App = React.createClass({
     },
 
     componentDidMount: function () {
-        getOpenIssues(function (data) {
+        getOpenIssues(starterLabels, function (data) {
             this.setState({
                 openIssues: data,
                 openIssuesLoading: false
             });
         }.bind(this));
 
-        getPotentiallyOpenIssues(function (data) {
+        getPotentiallyOpenIssues(starterLabels, function (data) {
             this.setState({
                 potentiallyOpenIssues: data,
                 potentiallyOpenIssuesLoading: false
