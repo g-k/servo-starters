@@ -1,4 +1,4 @@
-/* global $, React*/
+/* global $, React, console */
 
 var d = React.DOM;
 
