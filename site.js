@@ -249,21 +249,8 @@ var IssueList = React.createClass({
         };
     },
 
-    getIssuesWithSelectedLabels: function (issues, selectedLabels) {
-        var labelNames = selectedLabels.map(function (label) {
-            return label.name;
-        });
-
-        var filteredIssues = issues.filter(function (issue) {
-            for (var i = 0; i < issue.labels.length; i++) {
-                if (labelNames.indexOf(issue.labels[i].name) > -1) {
-                    return true;
-                }
-            }
-            return false;
-        });
-
-        return filteredIssues;
+    getIssuesWithSelectedLabels: function (issues) {
+        return issues;
     },
 
     render: function () {
@@ -343,7 +330,7 @@ var App = React.createClass({
             potentiallyOpenIssuesLoading: true,
             openIssues: [],
             potentiallyOpenIssues: [],
-            labelFilters: labelFilters
+            labelFilters: []
         };
     },
 
