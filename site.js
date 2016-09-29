@@ -6,12 +6,6 @@ var timeSort = function (l, r) {
     return r.created_at.localeCompare(l.created_at);
 };
 
-var repoDefaults = [
-    { repo: "highfive", language: "L-python" },
-    { repo: "servo-starters", language: "L-javascript" },
-    { repo: "crowbot", language: "L-javascript" },
-    { repo: "saltfs", language: "L-saltstack" },
-];
 
 
 var getIssueLanguageLabel = function (issue) {
