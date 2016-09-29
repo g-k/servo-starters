@@ -1,7 +1,7 @@
 {
-  "name": "servo-starters",
+  "name": "rust-starters",
   "version": "0.0.1",
-  "description": "Website for Servo Starters",
+  "description": "Website for Rust Starters",
   "main": "site.js",
   "scripts": {
     "test": "node node_modules/jshint/bin/jshint site.js"
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mfeckie/servo-starters#readme",
   "devDependencies": {
+    "flow-bin": "^0.30.0",
     "jshint": "^2.8.0"
   }
 }
