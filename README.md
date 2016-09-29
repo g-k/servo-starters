@@ -21,6 +21,11 @@ Rust Starters welcomes contribution from everyone. You can check out
 pull request to Rust or other Rust repos.  We also follow the
 [Rust Code of Conduct](https://www.rust-lang.org/conduct.html).
 
+To add a Rust organization or repository with beginner issues and
+mentors to include on this page, make a pull request adding a line to
+`starterLabels` at the top of `site.js` with the org/user name or repo
+and the label name.
+
 ## Communication
 
 Rust contributors frequent the [`#rust` channel](https://client01.chat.mibbit.com/?server=irc.mozilla.org&channel=%23rust) on [`irc.mozilla.org`](https://wiki.mozilla.org/IRC).
