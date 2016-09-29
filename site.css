@@ -127,7 +127,7 @@ h2 {
 .animated-rustacean {
     height: 220px;
     width: 100%;
-    background-image: url('animated-rustacean.gif');
+    background-image: url('images/animated-rustacean.gif');
     background-position: center;
     background-size: cover;
 }
