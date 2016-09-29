@@ -10,9 +10,17 @@ var starterLabels = [
   // N.B. quote labels with spaces and url encode all labels
   {"user": "rust-lang", "label": "E-easy"},
   {"user": "rust-lang", "label": "E-help-wanted"},
+  {"user": "rust-lang", "label": "E-mentor"},
 
+  {"user": "rust-lang", "label": "D-easy"}, // docs like rust-lang/rust-by-example
 
+  {"user": "rust-lang-nursery", "label": "E-mentor"},
+  {"user": "rust-lang-nursery", "label": "%22help+wanted%22"}, // rustup.rs
+  {"user": "rust-lang-nursery", "label": "easy"}, // rustfmt
 
+  {"repo": "Manishearth/rust-clippy", "label": "E-easy"},
+  {"repo": "Manishearth/rust-clippy", "label": "E-medium"},
+  {"repo": "Manishearth/rust-clippy", "label": "E-hard"},
 ];
 
 
