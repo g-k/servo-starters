@@ -6,9 +6,14 @@ var timeSort = function (l, r) {
     return r.created_at.localeCompare(l.created_at);
 };
 
+var starterLabels = [
+  // N.B. quote labels with spaces and url encode all labels
+  {"user": "rust-lang", "label": "E-easy"},
+  {"user": "rust-lang", "label": "E-help-wanted"},
 
 
 
+];
 
 
     }
