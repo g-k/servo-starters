@@ -16,17 +16,22 @@ var starterLabels = [
 ];
 
 
+var extractIssuesFunction = function (numIssueRequests, callback) {
+  if (numIssueRequests < 2) {
+    console.error("Extract results two or more starterLabels $.when returns an array.");
+  }
+  return function () {
+    var issues = [];
+    for (var i = 0; i < numIssueRequests; i++) {
+      if (!(arguments[i] && arguments[i][0] && arguments[i][0].items)) {
+        console.error("XHR", i, "to fetch issues failed.");
+      } else {
+        Array.prototype.push.apply(issues, arguments[i][0].items);
+      }
     }
 
-var extractFunction = function (callback) {
-  return function (r1, r2) {
-    var easies = r1[0].items,
-        lessEasies = r2[0].items,
-        all = easies.concat(lessEasies);
-
-    all.sort(timeSort);
-    all.map(addDefaultLanguageLabel);
-    callback(all);
+    issues.sort(timeSort);
+    callback(issues);
   };
 };
 
