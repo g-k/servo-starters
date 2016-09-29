@@ -357,16 +357,16 @@ var issueList = function (issues, loading, filters) {
 
 var App = React.createClass({
     selectFilter: function (filterProps) {
-        for (var i = 0; i < this.state.languageFilters.length; i++) {
-            if (this.state.languageFilters[i].name === filterProps.name) {
+        for (var i = 0; i < this.state.labelFilters.length; i++) {
+            if (this.state.labelFilters[i].name === filterProps.name) {
                 break;
             }
         }
 
         this.setState(function (oldState) {
-            var lf = oldState.languageFilters;
+            var lf = oldState.labelFilters;
             lf[i].selected = !lf[i].selected;
-            return {languageFilters: lf};
+            return {labelFilters: lf};
         });
     },
 
@@ -392,7 +392,7 @@ var App = React.createClass({
             potentiallyOpenIssuesLoading: true,
             openIssues: [],
             potentiallyOpenIssues: [],
-            languageFilters: langLabels
+            labelFilters: labelFilters
         };
     },
 
@@ -406,10 +406,10 @@ var App = React.createClass({
                 wantToWorkOn(this.state.labelFilters, this.selectFilter)),
 
             d.h2({}, "Open Issues"),
-            issueList(this.state.openIssues, this.state.openIssuesLoading, this.state.languageFilters),
+            issueList(this.state.openIssues, this.state.openIssuesLoading, this.state.labelFilters),
 
             d.h2({}, "Potentially Open Issues"),
-            issueList(this.state.potentiallyOpenIssues, this.state.potentiallyOpenIssuesLoading, this.state.languageFilters)
+            issueList(this.state.potentiallyOpenIssues, this.state.potentiallyOpenIssuesLoading, this.state.labelFilters)
         );
     }
 });
