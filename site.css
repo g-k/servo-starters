@@ -122,4 +122,15 @@ h2 {
 
 .language-picker {
   text-align: center;
+
+.animated-rustacean {
+    height: 220px;
+    width: 100%;
+    background-image: url('animated-rustacean.gif');
+    background-position: center;
+    background-size: cover;
+}
+.animated-rustacean-caption {
+    margin-top: 5px;
+    text-align: center;
 }
