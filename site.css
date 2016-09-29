@@ -120,8 +120,9 @@ h2 {
     display: none;
 }
 
-.language-picker {
-  text-align: center;
+.label-picker {
+    text-align: center;
+}
 
 .animated-rustacean {
     height: 220px;

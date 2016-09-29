@@ -401,9 +401,9 @@ var App = React.createClass({
             {},
             this.state.openIssuesLoading ? [] : feelingAdventurous(this.state.openIssues),
 
-            this.state.openIssuesLoading ? [] : d.div({className: "language-picker"},
                 d.h5({}, "and I want to work with: "),
                 wantToWorkWith(this.state.languageFilters, this.selectFilter)),
+            (this.state.openIssuesLoading || !this.state.labelFilters.length) ? [] : d.div({className: "label-picker"},
 
             d.h2({}, "Open Issues"),
             issueList(this.state.openIssues, this.state.openIssuesLoading, this.state.languageFilters),
