@@ -8,39 +8,10 @@ var timeSort = function (l, r) {
 
 
 
-var getIssueLanguageLabel = function (issue) {
-    for (var i = 0; i < issue.labels.length; i++) {
-        var label = issue.labels[i];
-        if (/^L-(.*)/.test(label.name)) {
-            return label;
-        }
-    }
-    return null;
-};
 
-var addDefaultLanguageLabel = function (issue) {
-    if (getIssueLanguageLabel(issue) !== null) {
-        return issue;
-    }
 
-    var defaultLanguageLabelName = "L-rust";
-    for (var i = 0; i < repoDefaults.length; i++) {
-        var repoUrlSubStr = "servo/" + repoDefaults[i].repo + "/issues";
-        if (issue.url && issue.url.match(repoUrlSubStr)) {
-            defaultLanguageLabelName = repoDefaults[i].language;
-            break;
-        }
-    }
 
-    var defaultLanguageLabelIndex = langLabels.map(function (l) {
-        return l.name;
-    }).indexOf(defaultLanguageLabelName);
-
-    if (langLabels[defaultLanguageLabelIndex]) {
-        issue.labels.push(langLabels[defaultLanguageLabelIndex]);
     }
-    return issue;
-};
 
 var extractFunction = function (callback) {
   return function (r1, r2) {
