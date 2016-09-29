@@ -108,16 +108,16 @@ h2 {
 }
 
 .time-wrapper {
-  border-bottom: #CAC7C7 solid 1px;
-  padding-bottom: 5px;
+    border-bottom: #CAC7C7 solid 1px;
+    padding-bottom: 5px;
 }
 .time {
-  font-size: 0.75em;
-  color: rgba(140, 139, 139, 0.77);
+    font-size: 0.75em;
+    color: rgba(140, 139, 139, 0.77);
 }
 
 #footer {
-  display: none;
+    display: none;
 }
 
 .language-picker {
