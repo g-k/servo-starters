@@ -87,6 +87,7 @@ var getOpenIssues = function (starterLabels, callback) {
   $.when.apply($, issueXhrs).done(dataExtractor);
 };
 
+// TODO(g-k): update or remove replacers for rust-lang repos
 var replacers = [
   {matcher: /^L-(.*)/, replacement: "Language: "},
   {matcher: /^A-(.*)/, replacement: "Area: "},
