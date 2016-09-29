@@ -235,14 +235,14 @@ var filterLabel = function (data) {
   return React.createElement(FilterLabel, data);
 };
 
-var WantToWorkWith = React.createClass({
+var WantToWorkOn = React.createClass({
   render: function () {
     return d.span({className: "labels"}, this.props.labels.map(filterLabel));
   }
 });
 
-var wantToWorkWith = function (labels, onClick) {
-  return React.createElement(WantToWorkWith, {labels: labels.map(function (label) {
+var wantToWorkOn = function (labels, onClick) {
+  return React.createElement(WantToWorkOn, {labels: labels.map(function (label) {
     label.onClick = onClick;
     return label;
   })});
@@ -401,9 +401,9 @@ var App = React.createClass({
             {},
             this.state.openIssuesLoading ? [] : feelingAdventurous(this.state.openIssues),
 
-                d.h5({}, "and I want to work with: "),
-                wantToWorkWith(this.state.languageFilters, this.selectFilter)),
             (this.state.openIssuesLoading || !this.state.labelFilters.length) ? [] : d.div({className: "label-picker"},
+                d.h5({}, "and I want to work on: "),
+                wantToWorkOn(this.state.labelFilters, this.selectFilter)),
 
             d.h2({}, "Open Issues"),
             issueList(this.state.openIssues, this.state.openIssuesLoading, this.state.languageFilters),
